@@ -4,7 +4,7 @@ const RED = [0, 0, 255];
 const WHITE = [255, 255, 255];
 const WHITE_MIN = [45, 45, 45];
 
-const HSV_WHITE = cv.scalar(33, 100 ,255);
+const HSV_WHITE = cv.cvtColor(WHITE, 'CV_GBR2HSV');
 const HSV_WHITE_MIN = [10 , 100 , 75];
 
 const minArea = 600;
