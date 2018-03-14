@@ -4,7 +4,7 @@ const RED = [0, 0, 255];
 const WHITE = [255, 255, 255];
 const WHITE_MIN = [45, 45, 45];
 
-const HSV_WHITE = cv.cvtColor(WHITE, 'CV_GBR2HSV');
+const HSV_WHITE = [20, 110, 100];
 const HSV_WHITE_MIN = [10 , 100 , 75];
 
 const minArea = 600;
@@ -15,10 +15,10 @@ cv.readImage('./test_imgs/1.jpg', (err, im) => {
 
     const window = new cv.NamedWindow('Image', 1);
     const cannyWindow = new cv.NamedWindow('Canny', 1);
-    const resultWindow = new cv.NamedWindow('Result', 1);
+    //const resultWindow = new cv.NamedWindow('Result', 1);
 
     im.resize(640, 480);
-    console.log(im.size());
+    //console.log(im.size());
 
 
 
@@ -26,12 +26,16 @@ cv.readImage('./test_imgs/1.jpg', (err, im) => {
 
     const out = im.copy();
     const im_canny = im.copy();
-    im_canny.convertHSVscale();
-    im_canny.inRange(HSV_WHITE_MIN, HSV_WHITE);
+    //im_canny.convertHSVscale();
+    im_canny.convertGrayscale();
+    //im_canny.inRange(HSV_WHITE_MIN, HSV_WHITE);
     //im_canny.canny(200,380);
 
     //im_canny.dilate(2);
     //im_canny.houghLinesP();
+
+    //im_canny.cvtColor('CV_BGR2GRAY');
+    im_canny.adaptiveThreshold(155, 0, 0, 11, 12);
 
     cannyWindow.show(im_canny);
 
